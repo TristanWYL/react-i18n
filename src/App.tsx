@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useTranslation } from "react-i18next";
+
+const lngOptions: Record<string, Record<"label", string>> = {
+  en: { label: "English" },
+  fr: { label: "française" },
+};
 
 function App() {
+  const { t, i18n } = useTranslation();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <p>{t("hello")}</p>
+      {Object.keys(lngOptions).map((lng) => (
+        <button
+          key={lng}
+          onClick={() => i18n.changeLanguage(lng)}
+          disabled={i18n.resolvedLanguage === lng}
         >
-          Learn React
-        </a>
-      </header>
+          {lngOptions[lng].label}
+        </button>
+      ))}
     </div>
   );
 }

@@ -8,8 +8,9 @@ export const setupI18n = () => {
   i18next.use(initReactI18next).use(LanguageDetector).init({
     fallbackLng: defaultLocale,
   });
-  i18next.on("languageChanged", loadLocale);
-  loadLocale(defaultLocale as Locale).then(() =>
-    i18next.changeLanguage(defaultLocale)
-  );
+  loadAndChange(defaultLocale);
+};
+
+export const loadAndChange = (locale: string) => {
+  loadLocale(locale as Locale).then(() => i18next.changeLanguage(locale));
 };

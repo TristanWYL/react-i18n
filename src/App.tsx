@@ -1,7 +1,7 @@
 import "./App.css";
 import { useTranslation } from "react-i18next";
-
-const lngOptions: Record<string, Record<"label", string>> = {
+import { Locale } from "./locales";
+const lngOptions: Record<Locale, Record<"label", string>> = {
   en: { label: "English" },
   fr: { label: "française" },
 };
@@ -17,7 +17,7 @@ function App() {
           onClick={() => i18n.changeLanguage(lng)}
           disabled={i18n.resolvedLanguage === lng}
         >
-          {lngOptions[lng].label}
+          {lngOptions[lng as Locale].label}
         </button>
       ))}
     </div>

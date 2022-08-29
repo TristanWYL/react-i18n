@@ -3,7 +3,7 @@ export enum Locale {
   en = "en",
   fr = "fr",
 }
-export const defaultLocale: Locale = Locale.en;
+
 const loading: Record<Locale, boolean> = { en: false, fr: false };
 const loaded: Record<Locale, boolean> = { en: false, fr: false };
 
@@ -27,6 +27,7 @@ export const loadLocale = (locale: Locale) => {
     });
 };
 
+export const defaultLocale: Locale = Locale.en;
 // Assume the url has the form of {protocol}://{domain name}/{locale}
 export const getLocaleFromUrl = () => {
   const locale = document.location.href.split("/")[3];
